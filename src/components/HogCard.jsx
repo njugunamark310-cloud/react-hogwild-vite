@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import fallbackPig from "../assets/porco.png";
+
 
 function HogCard({ hog, onHideHog }) {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -21,9 +23,14 @@ function HogCard({ hog, onHideHog }) {
         onClick={handleToggleExpand}
         style={{ cursor: "pointer", minHeight: "100%" }}
       >
-        <div className="image">
-          <img src={hog.image} alt={`Photo of ${hog.name}`} />
-        </div>
+        <img
+           src={hog.image || fallbackPig}
+           alt={`Photo of ${hog.name}`}
+            onError={(e) => {
+            e.currentTarget.onerror = null;
+            e.currentTarget.src = fallbackPig;
+         }}
+        />
         <div className="content">
           {/* Removed direct onClick here to prevent double-execution event bubbling loops */}
           <h3 className="header">

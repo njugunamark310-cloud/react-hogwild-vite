@@ -11,9 +11,10 @@ function App() {
   const [sortBy, setSortBy] = useState("all");
   const [hiddenHogNames, setHiddenHogNames] = useState([]);
 
-  function handleAddHog(newHog) {
-    setHogs([...hogs, newHog]);
-  }
+ function handleAddHog(newHog) {
+  setHogs((currentHogs) => [...currentHogs, newHog]);
+ }
+
 
   function handleHideHog(name) {
     setHiddenHogNames([...hiddenHogNames, name]);
